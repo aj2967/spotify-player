@@ -1,0 +1,42 @@
+.screen-container {
+    width: calc(100% - 100px);
+    height: 100%;
+    background-color: #1e2a3e;
+    border-radius: 30px 0 0 30px;
+}
+
+.disabled {
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
+.disabled:hover {
+    background: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255 .1) rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba (255, 255, .18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .37);
+}
+
+@media screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+
+    .screen-container {
+        width: 100%;
+        height: 80%;
+        flex: 1;
+        display: flex;
+        flex-direction: column-reverse;
+        border-radius: 0 0 20px 20px;
+    }
+}
