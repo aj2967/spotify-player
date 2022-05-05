@@ -1,5 +1,6 @@
 .player {
     display: flex;
+    overflow-y: auto;
 }
 
 .left-player-body {
