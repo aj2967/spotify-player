@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { notification } from "antd";
 
 import "./audioPlayer.css";
 import Controls from "./Controls";
@@ -76,6 +77,13 @@ const AudioPlayer = ({
 	}, [currentIndex]);
 
 	useEffect(() => {
+		if (audioRef.current.src.includes("null")) {
+			openNotificationUnsupportedTrack("warning");
+			// console.log(total[currentIndex].track.name);
+		}
+	}, [currentIndex, isPlaying]);
+
+	useEffect(() => {
 		setIsPlaying(false);
 		return () => {
 			audioRef.current.pause();
@@ -113,6 +121,17 @@ const AudioPlayer = ({
 				setCurrentIndex(currentIndex - 1);
 			}
 		}
+	};
+
+	const openNotificationUnsupportedTrack = (type) => {
+		notification[type]({
+			message: `${
+				total[currentIndex]?.track?.name || "This track"
+			} has no supported audio source`,
+			description: ``,
+			className: "notification glass",
+			duration: 2,
+		});
 	};
 
 	const addZero = (number) => {

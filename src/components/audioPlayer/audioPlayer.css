@@ -62,6 +62,20 @@
     color: #c4d0e3;
 }
 
+.notification {
+    border-radius: 10px;
+    background-color: var(--cardAlt);
+    border: none;
+}
+
+.ant-notification-notice-message {
+    color: var(--text)
+}
+
+.anticon svg {
+    color: var(--text);
+}
+
 @media screen and (max-width: 1200px) {
     .player-body {
         height: 100%;
