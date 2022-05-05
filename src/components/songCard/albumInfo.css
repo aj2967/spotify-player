@@ -1,12 +1,14 @@
 .albumInfo-card {
-    /* margin: 0 auto !important; */
-    padding: 0 2rem;
+    /* margin: 0 auto; */
+    /* padding: 0 5%; */
     display: flex;
     flex-direction: column;
+    margin: 0 !important;
 }
 
 .albumName-container {
     width: 100%;
+    height: 30%;
     overflow: hidden;
     font-size: 20px;
     font-weight: 700;
@@ -15,7 +17,13 @@
 
 .marquee {
     z-index: 200;
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transform: translateY(10px);
+    height: 60%;
 }
 
 .album-info {
