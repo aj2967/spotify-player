@@ -27,6 +27,7 @@ const Home = () => {
 		} else {
 			setToken(token);
 			setClientToken(token);
+
 		}
 
 		// if (token && tokenExpired === true) {
@@ -54,6 +55,7 @@ const Home = () => {
 			<Sidebar />
 			<Routes>
 				<Route exact path="/" element={<Library />} />
+				<Route path="/spotify-player/" element={<Library />} />
 				<Route path="/search" element={<Search />} />
 				<Route path="/player" element={<Player />} />
 				<Route path="/login" element={<Login />} />
