@@ -1,6 +1,7 @@
 import "./albumInfo.css";
 
 const AlbumInfo = ({ album }) => {
+	console.log(album);
 	const artists = [];
 	album?.artists?.forEach((element) => {
 		artists.push(element?.name);
@@ -8,14 +9,11 @@ const AlbumInfo = ({ album }) => {
 
 	return (
 		<div className="albumInfo-card">
-			<div className="albumName-container">
-				<marquee className="marquee">
-					<p>{`${album?.name} - ${artists?.join(", ")}`}</p>
-				</marquee>
-			</div>
-			<div className="album-release">
-				<p>Release Date: {album?.release_date}</p>
-			</div>
+			<marquee scrollamount="3">
+				<p>{`${album?.name} | Released ${album?.release_date} | ${
+					album?.album_type
+				} | By ${artists?.join(", ")}`}</p>
+			</marquee>
 		</div>
 	);
 };
