@@ -2,8 +2,8 @@ import axios from "axios";
 
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const clientID = 'ef335b670feb4073ba7da1bb2423cbc5';
-const redirectUri = 'http://localhost:3000';
-// const redirectUri = 'https://aj2967.github.io/spotify-player/';
+const redirectUri = 'https://aj2967.github.io/spotify-player/';
+// const redirectUri = 'http://localhost:3000';
 const scopes = [
     'user-library-read',
     'playlist-read-private',
