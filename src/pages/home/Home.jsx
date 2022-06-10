@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { setClientToken } from "../../spotify";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -10,42 +10,51 @@ import Player from "../player/Player";
 import "./home.css";
 
 const Home = () => {
-	const navigate = useNavigate();
 	const [token, setToken] = useState("");
 
 	useEffect(() => {
-		const token = window.localStorage.getItem("token");
+		let temp = JSON.parse(localStorage.getItem("token"));
+		const token = temp?.value
 		const hash = window.location.hash;
 		window.location.hash = "";
 
 		if (!token && hash) {
-			const _token = hash.split("&")[0].split("=")[1];
-			window.localStorage.setItem("token", _token);
-			setToken(_token);
-			setClientToken(_token);
-			handleTimer();
+			const urlToken = hash.split("&")[0].split("=")[1];
+			setToken(urlToken);
+			setClientToken(urlToken);
+			setExpiry("token", urlToken, 3599999);
 		} else {
 			setToken(token);
 			setClientToken(token);
-
 		}
 
-		// if (token && tokenExpired === true) {
-		// 	localStorage.removeItem("token");
-		// 	setToken(null);
-		// 	navigate("/login");
-		// 	setTokenExpired(false);
-		// }
+		getExpiry('token');
 	}, [window.onload]);
 
-	const handleTimer = () => {
-		console.log(`i'm running`);
-		setTimeout(() => {
-			// setTokenExpired(true);
-			localStorage.removeItem("token");
+	const setExpiry = (key, value, ttl) => {
+		const now = new Date();
+		const item = {
+			value: value,
+			expiry: now.getTime() + ttl,
+		};
+		localStorage.setItem(key, JSON.stringify(item));
+	};
+
+	const getExpiry = (key) => {
+		const itemStr = localStorage.getItem(key);
+		if (!itemStr) {
+			return null;
+		}
+		const item = JSON.parse(itemStr);
+		const now = new Date();
+
+		if (now.getTime() > item.expiry) {
+			localStorage.removeItem(key);
 			setToken(null);
-			navigate("/login");
-		}, 3599999);
+			setClientToken(null);
+			return null;
+		}
+		return item.value;
 	};
 
 	return !token ? (

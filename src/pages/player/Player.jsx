@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AudioPlayer from "../../components/audioPlayer/AudioPlayer";
 import Queue from "../../components/queue/Queue";
 import SongCard from "../../components/songCard/SongCard";
+import Suggestions from "../../components/suggestions/Suggestions";
 import apiClient from "../../spotify";
 
 import "./player.css";
@@ -40,10 +41,8 @@ const Player = () => {
 				default:
 					break;
 			}
-		} else {
-			// navigate('/')
 		}
-	}, [location.state]);
+	}, [location?.state, location?.state?.id]);
 
 	useEffect(() => {
 		setCurrentTrack(tracks[currentIndex]?.track);
@@ -52,12 +51,18 @@ const Player = () => {
 	return (
 		<div className="screen-container player">
 			<div className="left-player-body">
-				<AudioPlayer
-					currentTrack={currentTrack}
-					total={tracks}
-					currentIndex={currentIndex}
-					setCurrentIndex={setCurrentIndex}
-				/>
+				<div className="left-top-player-body">
+					<AudioPlayer
+						currentTrack={currentTrack}
+						total={tracks}
+						currentIndex={currentIndex}
+						setCurrentIndex={setCurrentIndex}
+					/>
+				</div>
+				<div className="left-bottom-player-body">
+					<Suggestions title="New Releases" />
+					{/* <Suggestions country="US" title="US" /> */}
+				</div>
 			</div>
 			<div className="right-player-body">
 				<SongCard album={currentTrack?.album} />

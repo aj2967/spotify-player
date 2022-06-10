@@ -4,9 +4,22 @@
 }
 
 .left-player-body {
-    width: 100%;
+    width: 75%;
     margin-right: 2%;
     height: 100%;
+}
+
+.left-top-player-body {
+    height: 55%;
+}
+
+.left-bottom-player-body {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2%;
+    padding: 2%;
+    height: 40%;
+    width: 100%;
 }
 
 .right-player-body {
@@ -25,6 +38,11 @@
     .left-player-body {
         margin-right: 0;
         height: 40%;
+        width: 100%;
+    }
+
+    .left-bottom-player-body {
+        display: none;
     }
 
     .right-player-body {

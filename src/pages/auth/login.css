@@ -11,7 +11,33 @@
 }
 
 .logo {
-    width: 30%;
+    width: 400px;
+    max-width: 90%;
+}
+
+.login-instructions {
+    margin: 2rem;
+    max-width: 400px;
+    padding: 15px;
+    background: rgba(238, 238, 238, 0.9);
+    border-radius: 5px;
+}
+
+.login-details-container div {
+    display: flex;
+    /* align-items: center; */
+    gap: .5rem;
+}
+
+.copy {
+    cursor: pointer;
+    background: none;
+    border: none;
+    transform: translateY(-2.5px);
+}
+
+.copy-icon {
+    font-size: 20px;
 }
 
 .login-btn {

@@ -14,7 +14,7 @@ const SidebarButton = ({ title, to, icon, signOut }) => {
 		if (signOut) {
 			console.log("signed out");
 			localStorage.removeItem('token');
-			window.location.reload(false);
+			window.location.reload();
 		}
 	};
 

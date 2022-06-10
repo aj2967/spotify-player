@@ -6,7 +6,8 @@ const redirectUri = 'http://localhost:3000';
 // const redirectUri = 'https://aj2967.github.io/spotify-player/';
 const scopes = [
     'user-library-read',
-    'playlist-read-private'
+    'playlist-read-private',
+    'user-top-read'
 ]
 
 export const loginEndpoint = `${authEndpoint}client_id=${clientID}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;

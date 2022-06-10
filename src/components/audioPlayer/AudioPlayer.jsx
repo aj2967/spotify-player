@@ -38,7 +38,7 @@ const AudioPlayer = ({
 			default:
 				break;
 		}
-	}, [isPlaying]);
+	}, [isPlaying, location?.state]);
 
 	useEffect(() => {
 		if (audioRef.current.src) {
@@ -59,7 +59,7 @@ const AudioPlayer = ({
 				audioRef.current.pause();
 			}
 		}
-	}, [isPlaying]);
+	}, [isPlaying, location?.state?.id]);
 
 	useEffect(() => {
 		audioRef.current.pause();
@@ -74,14 +74,13 @@ const AudioPlayer = ({
 		} else {
 			isReady.current = true;
 		}
-	}, [currentIndex]);
+	}, [currentIndex, location?.state?.id]);
 
 	useEffect(() => {
 		if (audioRef.current.src.includes("null")) {
 			openNotificationUnsupportedTrack("warning");
-			// console.log(total[currentIndex].track.name);
 		}
-	}, [currentIndex, isPlaying]);
+	}, [currentIndex, isPlaying, location?.state?.id]);
 
 	useEffect(() => {
 		setIsPlaying(false);
@@ -89,7 +88,7 @@ const AudioPlayer = ({
 			audioRef.current.pause();
 			clearInterval(intervalRef.current);
 		};
-	}, []);
+	}, [location?.state]);
 
 	const startTimer = () => {
 		clearInterval(intervalRef.current);
@@ -127,7 +126,7 @@ const AudioPlayer = ({
 		notification[type]({
 			message: `${
 				total[currentIndex]?.track?.name || "This track"
-			} has no supported audio source`,
+			} has no supported audio source from Spotify`,
 			description: ``,
 			className: "notification glass",
 			duration: 2,
